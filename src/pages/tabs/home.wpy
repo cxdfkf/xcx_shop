@@ -1,24 +1,104 @@
 <template>
-  <view>这是主页</view>
+  <view class="home">
+
+    <swiper
+      indicator-dots
+      circular
+    >
+      <swiper-item
+        wx:for="{{swiperData}}"
+        wx:key="{{index}}"
+      >
+        <navigator url="{{item.navigator_url}}">
+          <image src="{{item.image_src}}"></image>
+        </navigator>
+      </swiper-item>
+    </swiper>
+    <view class="cate_box">
+      <navigator
+        url="/pages/tabs/cates"
+        open-type="switchTab"
+        wx:for="{{cateData}}"
+        wx:key="index"
+      >
+        <image src="{{item.image_src}}"></image>
+      </navigator>
+    </view>
+    <!-- 楼层结构 -->
+    <view class="floor_box">
+      <view
+        class="floor_item"
+        wx:for="{{floorData}}"
+        wx:key="index"
+      >
+        <image
+          src="{{item.floor_title.image_src}}"
+          class="tit"
+        ></image>
+        <view class="img_box">
+          <image
+            src="{{item.image_src}}"
+            wx:for="{{item.product_list}}"
+            wx:key="index"
+          ></image>
+        </view>
+      </view>
+    </view>
+
+  </view>
 </template>
 
 <script>
 
 import wepy from 'wepy'
+import mixHome from '../../mixins/tabs/home.js'
 
 export default class Home extends wepy.page {
-  data = {
-  }
-
-  config = {
-  }
-
-  methods = {
-
-  }
+  mixins = [mixHome]
 }
 
 </script>
 
 <style lang='less'>
+.home {
+  swiper {
+    height: 350rpx;
+    navigator,
+    image {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .cate_box {
+    display: flex;
+    padding: 40rpx 0;
+    navigator {
+      width: 25%;
+      text-align: center;
+      image {
+        width: 128rpx;
+        height: 140rpx;
+      }
+    }
+  }
+  .floor_box {
+    .floor_item {
+      .tit {
+        height: 50rpx;
+        width: 640rpx;
+      }
+      .img_box {
+        image {
+          width: 230rpx;
+          height: 190rpx;
+          float: left;
+          margin: 10rpx;
+        }
+        image:nth-child(1) {
+          height: 390rpx;
+        }
+      }
+    }
+  }
+}
 </style>

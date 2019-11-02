@@ -1,12 +1,12 @@
 <template>
-  <view>分类页面</view>
+  <view>这是商品详情页</view>
 </template>
 
 <script>
 
 import wepy from 'wepy'
 
-export default class Cates extends wepy.page {
+export default class Home extends wepy.page {
   data = {
   }
 
